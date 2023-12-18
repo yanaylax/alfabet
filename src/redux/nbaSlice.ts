@@ -1,5 +1,5 @@
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { Player } from "../App.types";
 
 export const fetchPlayers = createAsyncThunk<Player[], string>(
@@ -69,7 +69,7 @@ const nbaSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchPlayers.pending, (state) => {
-        state.loading = true; // Indicate loading at the start of the request
+        state.loading = true;
       })
       .addCase(
         fetchPlayers.fulfilled,
@@ -78,11 +78,11 @@ const nbaSlice = createSlice({
             ...player,
             favorite: state.favoritePlayers.some((fav) => fav.id === player.id),
           }));
-          state.loading = false; // Set loading to false when the request is successful
+          state.loading = false;
         }
       )
       .addCase(fetchPlayers.rejected, (state) => {
-        state.loading = false; // Set loading to false if the request fails
+        state.loading = false;
       });
   },
 });
