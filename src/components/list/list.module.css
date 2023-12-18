@@ -1,0 +1,16 @@
+.list {
+  display: flex;
+  flex-direction: column;
+}
+
+.list_container {
+  padding: 10px;
+  flex-basis: 50%;
+  height: 100%;
+  max-height: calc(100vh - 5rem);
+  overflow-y: auto;
+
+  @media screen and (max-width: 768px) {
+    max-height: calc(50vh - 2.5rem);
+  }
+}
