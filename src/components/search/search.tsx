@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../redux/store"; // Adjust the path as needed
-import { setSearch } from "../../redux/nbaSlice"; // Adjust the path as needed
+import { RootState } from "../../redux/store";
+import { setSearch } from "../../redux/nbaSlice";
 import styles from "./search.module.css";
 
 const SearchInput: React.FC = () => {
