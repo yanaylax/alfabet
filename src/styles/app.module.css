@@ -1,0 +1,43 @@
+.app_container {
+  overflow: hidden;
+  height: 100dvh;
+
+  padding: var(--padding-inline);
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: var(--search-height) auto;
+
+  gap: var(--padding-inline);
+}
+
+.app_container * {
+  animation: fadeIn var(--transition);
+}
+
+.app_container:nth-child(2) {
+  animation-delay: 2s;
+}
+
+.app_container:nth-child(3) {
+  animation-delay: 3s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .app_container {
+    padding: 0;
+
+    grid-template-columns: 1fr;
+    grid-template-rows: var(--search-height) 1fr 1fr;
+    gap: 0;
+  }
+}

@@ -1,0 +1,19 @@
+.spinner {
+  display: block;
+}
+
+.spinnerCircle {
+  stroke: var(--color-black);
+  stroke-linecap: round;
+  stroke-dasharray: 31.415, 31.415;
+  stroke-dashoffset: 0;
+  transform-origin: center;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  100% {
+    stroke-dashoffset: -31.415;
+    transform: rotate(360deg);
+  }
+}

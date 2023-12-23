@@ -1,7 +1,8 @@
 import { HexColorPicker } from "react-colorful";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../redux/store";
-import { changeBackgroundColor } from "../../redux/nbaSlice";
+import { changeBackgroundColor } from "../../redux/slices/nbaSlice";
+
 import "./color-selector.css";
 
 const ColorSelector = () => {

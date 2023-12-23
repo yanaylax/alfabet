@@ -1,0 +1,29 @@
+:root {
+  /* colors */
+  --color-white: #fff;
+  --color-black: #000;
+  --color-gray: #ccc;
+  --color-blue: #007bff;
+
+  --color-blue-opacity: rgba(0, 123, 255, 0.2);
+
+  --color-base: var(--color-black);
+
+  /* fonts */
+  --font-size-heading-md: 1.5rem;
+  --font-size-heading-lg: 2rem;
+
+  --font-size-par: 0.875rem;
+
+  --heading-weight: 500;
+  --par-weight: 400;
+
+  /* spacing */
+  --padding-inline: 1rem;
+  --padding-block: 0.5rem;
+
+  /* animation */
+  --transition: 0.3s ease both;
+
+  --search-height: 4rem;
+}

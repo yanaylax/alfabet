@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import nbaReducer from "./nbaSlice";
+import nbaReducer from "./slices/nbaSlice";
 
 export const store = configureStore({
   reducer: {

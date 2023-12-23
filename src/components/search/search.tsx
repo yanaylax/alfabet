@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
-import { setSearch } from "../../redux/nbaSlice";
+import { setSearch } from "../../redux/slices/nbaSlice";
 import styles from "./search.module.css";
 
 const SearchInput: React.FC = () => {
@@ -15,6 +15,7 @@ const SearchInput: React.FC = () => {
   return (
     <input
       className={styles.search_input}
+      name="search"
       type="text"
       placeholder="Search for a player..."
       value={search}

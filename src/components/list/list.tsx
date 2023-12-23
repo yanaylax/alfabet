@@ -5,33 +5,35 @@ import styles from "./list.module.css";
 import { RootState } from "../../redux/store";
 import { useSelector } from "react-redux";
 import ColorSelector from "../color-selector/color-selector";
+import Spinner from "../spinner/spinner";
 
-const List: React.FC<ListProps> = ({ items, itemClickHandler, type }) => {
+const List: React.FC<ListProps> = ({
+  items,
+  itemClickHandler,
+  type,
+  isLoading,
+}) => {
   const favoritePlayersBackgroundColor = useSelector(
     (state: RootState) => state.nba.favoritePlayersBackgroundColor
   );
   return (
     <div className={styles.list_container}>
       {type === "favorite" && <ColorSelector />}
-
-      {items.length > 0 && (
-        <ul
-          className={styles.list}
-          style={{
-            backgroundColor:
-              type === "favorite" ? favoritePlayersBackgroundColor : "#fff",
-          }}
-        >
+      {isLoading ? (
+        <Spinner size={50} />
+      ) : items.length > 0 ? (
+        <ul className={styles.list}>
           {items.map((item) => (
             <ListItem
               {...item}
+              favoritePlayersBackgroundColor={favoritePlayersBackgroundColor}
               itemClickHandler={() => itemClickHandler(item.id)}
               type={type}
               key={item.id}
             />
           ))}
         </ul>
-      )}
+      ) : null}
     </div>
   );
 };

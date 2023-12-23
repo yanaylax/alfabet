@@ -1,16 +1,27 @@
 .list {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .list_container {
-  padding: 10px;
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   flex-basis: 50%;
   height: 100%;
-  max-height: calc(100vh - 5rem);
+  max-height: var(--max-height);
   overflow-y: auto;
+  position: relative;
+  width: 100%;
 
-  @media screen and (max-width: 768px) {
-    max-height: calc(50vh - 2.5rem);
-  }
+  scrollbar-gutter: stable both-edges;
+}
+
+.list_container:has(ul, div) {
+  justify-content: flex-start;
+  align-items: flex-start;
 }

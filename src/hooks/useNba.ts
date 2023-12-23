@@ -1,13 +1,13 @@
 import { useCallback, useEffect } from "react";
-import debounce from "lodash/debounce";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, AppDispatch } from "../redux/store";
 import {
   addPlayerToFavorites,
   removePlayerFromFavorites,
-  fetchPlayers,
   synchronizeFavorites,
-} from "../redux/nbaSlice";
+} from "../redux/slices/nbaSlice";
+import { debounce } from "../utils/debounce";
+import { fetchPlayers } from "../redux/actions/nbaActions";
 
 const useNba = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -19,7 +19,7 @@ const useNba = () => {
   const isLoading = useSelector((state: RootState) => state.nba.loading);
 
   const debouncedFetchPlayers = useCallback(
-    debounce((searchTerm) => {
+    debounce((searchTerm: string) => {
       dispatch(fetchPlayers(searchTerm));
     }, 300),
     [dispatch]

@@ -1,24 +1,7 @@
-import axios from "axios";
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import { Player } from "../App.types";
-
-export const fetchPlayers = createAsyncThunk<Player[], string>(
-  "nba/fetchPlayers",
-  async (searchQuery: string) => {
-    const response = await axios.get(
-      `https://www.balldontlie.io/api/v1/players?search=${searchQuery}`
-    );
-    return response.data.data;
-  }
-);
-
-interface NbaState {
-  players: Player[];
-  favoritePlayers: Player[];
-  search: string;
-  favoritePlayersBackgroundColor: string;
-  loading?: boolean;
-}
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Player } from "../../app.types";
+import { fetchPlayers } from "../actions/nbaActions";
+import { NbaState } from "../types/NbaState";
 
 const initialState: NbaState = {
   players: [],
@@ -42,21 +25,20 @@ const nbaSlice = createSlice({
     },
     addPlayerToFavorites: (state, action: PayloadAction<number>) => {
       const player = state.players.find((p) => p.id === action.payload);
-      if (player) {
-        if (!state.favoritePlayers.some((p) => p.id === player.id)) {
-          state.favoritePlayers.push(player);
-        }
-        player.favorite = true;
+      if (player && !state.favoritePlayers.some((p) => p.id === player.id)) {
+        state.favoritePlayers.push(player);
       }
+      state.players = state.players.map((p) =>
+        p.id === action.payload ? { ...p, favorite: true } : p
+      );
     },
     removePlayerFromFavorites: (state, action: PayloadAction<number>) => {
       state.favoritePlayers = state.favoritePlayers.filter(
         (p) => p.id !== action.payload
       );
-      const player = state.players.find((p) => p.id === action.payload);
-      if (player) {
-        player.favorite = false;
-      }
+      state.players = state.players.map((p) =>
+        p.id === action.payload ? { ...p, favorite: false } : p
+      );
     },
     synchronizeFavorites: (state) => {
       state.players.forEach((player) => {
