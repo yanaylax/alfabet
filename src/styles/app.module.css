@@ -11,7 +11,7 @@
   gap: var(--padding-inline);
 }
 
-.app_container * {
+.app_container > * {
   animation: fadeIn var(--transition);
 }
 

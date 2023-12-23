@@ -4,6 +4,8 @@
 
   --height: 60px;
 
+  min-width: 100%;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -17,15 +19,15 @@
 }
 
 .list_item::before {
-  content: " ";
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: var(--height);
+  height: 100%;
   background-color: var(--color-blue-opacity);
-  transform: translateX(-100%);
   transition: transform 0.3s ease;
+  transform: translateX(-100%);
 }
 
 .list_item:hover.list_item:before {
